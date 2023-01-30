@@ -9,6 +9,10 @@
 <body>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            fetch('/saveuser', {
+                method: 'POST',
+                body: {check : true}
+            });
             window.location.href = 'http://localhost:3000/';
         });
     </script>

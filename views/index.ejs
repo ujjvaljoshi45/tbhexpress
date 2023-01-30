@@ -30,7 +30,9 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" role="button" aria-current="page" onclick="load_page('profile')"><%=user.name %></a>
+                <a class="nav-link" role="button" aria-current="page" onclick="load_page('profile')">
+                  <%=user.name %>
+                </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" role="button" onclick="load_page('post')">My Posts</a>
@@ -52,21 +54,23 @@
     <main>
       <div class="container-fluid" id="create-post-div">
         <div class="form-outline">
-          <h3 style="text-align: start;">Create Post</h3>
-          <input type="hidden" name="username" value="ujjval" id="new-post-username">
-          <textarea class="form-control" id="new-post-content" rows="4" placeholder="Type here!"></textarea>
-          <div class="col-md-12 bg-light text-start m-1 p-1">
-            <button type="button" class="btn btn-primary" id="new-post-submit-btn" style="text-align: start"
-              onclick="createNewPost()">Submit</button>
-          </div>
+          <form>
+            <h3 style="text-align: start;">Create Post</h3>
+            <textarea class="form-control" id="new-post-content" name="post" rows="4" placeholder="Type here!"></textarea>
+            <div class="col-md-12 bg-light text-start m-1 p-1">
+              <button type="button" class="btn btn-primary" id="new-post-submit-btn" style="text-align: start" onclick="add_post()">Submit</button>
+          </form>
         </div>
+      </div>
       </div>
       <div class="container-fluid" id="index-div">
 
       </div>
       <div class="container-fluid" id="profile-div">
         <img src="<%=user.picture%>" alt="<%=user.name%>">
-        <h3><%=user.name %></h3>
+        <h3>
+          <%=user.name %>
+        </h3>
       </div>
       <div class="container-fluid" id="post-div">
 
@@ -75,8 +79,8 @@
     <% } else { %>
       <div><a href="/auth/google/callback" role="button">Sign In With Google</a></div>
       <% } %>
-  <script>
-  </script>
+        <script>
+        </script>
 </body>
 
 </html>

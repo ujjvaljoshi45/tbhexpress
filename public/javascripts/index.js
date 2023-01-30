@@ -28,3 +28,14 @@ function load_page(pagestatus) {
         document.getElementById('post-div').style.display = 'block';
     }
 }
+
+function add_post(){
+    var post = document.getElementById('new-post-content').value;
+    fetch('/addpost', {
+        method: 'POST',
+        body: JSON.stringify({post: post}),
+    }).then(res => res.json())
+    .then(res => {
+        console.log(res);
+    });
+}
