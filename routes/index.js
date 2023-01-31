@@ -6,7 +6,7 @@ const Post = require('../models/PostSchema');
 
 /* GET home page. */
 var authenticated = false;
-
+dbUserConnect();
 router.get('/', function(req, res, next) {
   if(req.user){
     authenticated = true;
@@ -27,7 +27,7 @@ router.get('/authfailure', (req,res)=>{
   res.render('Auth');
 });
 router.post('/saveuser', (req,res)=>{
-  dbUserConnect();
+  
   User.findOne({sub : req.user._json.sub}, function (err, usr) {
     if (usr) {
       authenticated = true;
@@ -45,15 +45,35 @@ router.post('/saveuser', (req,res)=>{
 
 router.post('/addpost', (req,res)=> {
   const post = new Post({
-    user: req.user._json.sub,
+    user: req.user._json.name,
+    userSub: req.user._json.sub,
     body: req.body.post,
     date: new Date(),
   });
   post.save();
   console.log(post);
-  res.send('Post Saved');
+  res.status(200).json({status: 'success'});
 });
 
+router.get('/getpost', (req,res)=> {
+  Post.find({}, function(err, posts) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.status(200).json({status: 'success', post: posts});
+    }
+  });
+});
+
+router.get('/getuserposts', (req,res) => {
+  Post.find({userSub: req.user._json.sub}, function(err, posts) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.status(200).json({status: 'success', post: posts});
+    }
+  });
+});
 //DBConnections
 async function dbUserConnect(){
   await mongoose.connect('mongodb://127.0.0.1/user');
