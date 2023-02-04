@@ -5,32 +5,28 @@ const User = require('../models/UserSchema');
 const Post = require('../models/PostSchema');
 
 /* GET home page. */
-var authenticated = false;
 dbUserConnect();
 router.get('/', function(req, res, next) {
   if(req.user){
-    authenticated = true;
     var userJson = req.user._json;
   } else {
     var userJson = null;
   }
-  res.render('index', {authenticated: authenticated, user: userJson});
+  res.render('index', {user: userJson});
 });
 
 router.get('/authsuccess', (req,res)=>{
-  authenticated = true;
   res.render('Auth');
 });
 
 router.get('/authfailure', (req,res)=>{
-  authenticated = false;
   res.render('Auth');
 });
 router.post('/saveuser', (req,res)=>{
   
   User.findOne({sub : req.user._json.sub}, function (err, usr) {
     if (usr) {
-      authenticated = true;
+      console.log('found');
     } else {
       const user = new User({
         sub: req.user._json.sub,

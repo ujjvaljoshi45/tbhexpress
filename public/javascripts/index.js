@@ -53,7 +53,7 @@ function get_post(){
             var post = res.post;
             var post_div = document.getElementById('index-div');
             post_div.innerHTML = '';
-            for (var i = 0; i < post.length; i++){
+            for (var i = post.length-1; i > -1; i--){
                 var post_content = document.createElement('div');
                 post_content.className = 'post-content';
                 post_content.innerHTML = `

@@ -12,10 +12,12 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   <script src="javascripts/index.js"></script>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
 </head>
 
 <body>
-  <% if(authenticated) { %>
+  <% if(user) { %>
 
     <header>
       <!-- Navbar -->
@@ -56,9 +58,11 @@
         <div class="form-outline">
           <form>
             <h3 style="text-align: start;">Create Post</h3>
-            <textarea class="form-control" id="new-post-content" name="post" rows="4" placeholder="Type here!"></textarea>
+            <textarea class="form-control" id="new-post-content" name="post" rows="4"
+              placeholder="Type here!"></textarea>
             <div class="col-md-12 bg-light text-start m-1 p-1">
-              <button type="button" class="btn btn-primary" id="new-post-submit-btn" style="text-align: start" onclick="add_post()">Submit</button>
+              <button type="button" class="btn btn-primary" id="new-post-submit-btn" style="text-align: start"
+                onclick="add_post()">Submit</button>
           </form>
         </div>
       </div>
@@ -80,9 +84,17 @@
       </div>
     </main>
     <% } else { %>
-      <div><a href="/auth/google/callback" role="button">Sign In With Google</a></div>
+      <div role="button" onclick="runLogin()" class="google-btn">
+        <div role="button" onclick="runLogin()" class="google-icon-wrapper">
+          <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+        </div>
+        <p class="btn-text"><b>Sign in with google</b></p>
+      </div>
       <% } %>
         <script>
+          function runLogin() {
+            window.location.href = "/auth/google/callback";
+          }
         </script>
 </body>
 
