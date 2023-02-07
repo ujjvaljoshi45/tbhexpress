@@ -36,17 +36,17 @@
                   <%=user.name %>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" role="button" onclick="load_page('post')">My Posts</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link" role="button" href="/auth/logout">Logout</a>
               </li>
             </ul>
-            <form class="d-flex">
+            <!-- <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            </form> -->
           </div>
         </div>
       </nav>
@@ -84,12 +84,15 @@
       </div>
     </main>
     <% } else { %>
+<center>
+<h1>To Be Honest </ht>
       <div role="button" onclick="runLogin()" class="google-btn">
         <div role="button" onclick="runLogin()" class="google-icon-wrapper">
           <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
         </div>
         <p class="btn-text"><b>Sign in with google</b></p>
       </div>
+</center>
       <% } %>
         <script>
           function runLogin() {

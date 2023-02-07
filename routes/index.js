@@ -72,7 +72,7 @@ router.get('/getuserposts', (req,res) => {
 });
 //DBConnections
 async function dbUserConnect(){
-  await mongoose.connect('mongodb://127.0.0.1/user');
+  await mongoose.connect('mongodb+srv://ujjvaljoshi45:xGRiPfGSHCTjt16S@tbh.0u29soe.mongodb.net/?retryWrites=true&w=majorityr');
 }
 
 module.exports = router;
